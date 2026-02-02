@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="start-bg">
+
+  <div class="center-box">
+    <h1>Heyyy 🐼💌</h1>
+    <p>What's your name?</p>
+
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <br><br>
+    <button onclick="goNext()">Continue ➜</button>
+  </div>
+
+  <script>
+    function goNext() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name === "") {
+        alert("Please enter your name 🥺");
+        return;
+      }
+      localStorage.setItem("valName", name);
+      window.location.href = "page2.html";
+    }
+  </script>
+
+</body>
+</html>

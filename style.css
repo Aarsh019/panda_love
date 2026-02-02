@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Backgrounds */
+.start-bg {
+  background: linear-gradient(#ff9a9e, #fecfef);
+  height: 100vh;
+}
+
+.sad-bg {
+  background: linear-gradient(#cbb4d4, #b993d6);
+  height: 100vh;
+}
+
+.happy-bg {
+  background: linear-gradient(#ff9a9e, #fecfef);
+  height: 100vh;
+}
+
+/* Center box */
+.center-box {
+  margin-top: 30vh;
+}
+
+/* Main container */
+.container {
+  margin-top: 40px;
+}
+
+/* Panda */
+#panda {
+  width: 220px;
+  margin: 20px;
+}
+
+/* Buttons */
+.buttons {
+  position: relative;
+  height: 200px;
+}
+
+#yesBtn {
+  padding: 15px 40px;
+  font-size: 22px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+#noBtn {
+  position: absolute;
+  padding: 10px 20px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
