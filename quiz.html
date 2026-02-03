@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Little Quiz 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    }
+
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.95);
+      width: 90%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    img {
+      width: 180px;
+      border-radius: 18px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      color: #d63384;
+      margin-bottom: 20px;
+    }
+
+    .option {
+      background: #ffe4ec;
+      border: none;
+      padding: 14px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 18px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .option:hover {
+      background: #ffccd5;
+      transform: scale(1.03);
+    }
+
+    .progress {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+  <img id="pandaImg" src="https://i.pinimg.com/originals/c9/90/78/c990783caafed97b2edd60eaed7c244e.gif" alt="Happy Panda">
+
+  <h2 id="question">Where should we go for our first date? 💕</h2>
+
+  <div id="options"></div>
+
+  <div class="progress" id="progress">Question 1 / 5</div>
+</div>
+
+<script>
+  const quiz = [
+    {
+      q: "Where should we go for our first date? 💕",
+      o: ["Cafe ☕", "Park 🌳", "Movie 🎬", "Night walk 🌃"]
+    },
+    {
+      q: "Which movie will we watch together? 🎥",
+      o: ["Romantic 💖", "Comedy 😂", "Action 🔥", "Horror 😱"]
+    },
+    {
+      q: "What should we eat on our date? 🍽️",
+      o: ["Pizza 🍕", "Burger 🍔", "Dessert 🍰", "Street food 🌮"]
+    },
+    {
+      q: "How long should our date be? ⏰",
+      o: ["1–2 hours", "Evening", "Late night 🌙", "Whole day 😏"]
+    },
+    {
+      q: "One thing you want from me? 💌",
+      o: ["Flowers 💐", "Hug 🤗", "Surprise 🎁", "Love letter 💝"]
+    }
+  ];
+
+  let index = 0;
+  let answers = [];
+
+  const questionEl = document.getElementById("question");
+  const optionsEl = document.getElementById("options");
+  const progressEl = document.getElementById("progress");
+
+  loadQuestion();
+
+  function loadQuestion() {
+    optionsEl.innerHTML = "";
+    questionEl.innerText = quiz[index].q;
+    progressEl.innerText = `Question ${index + 1} / ${quiz.length}`;
+
+    quiz[index].o.forEach(option => {
+      const btn = document.createElement("button");
+      btn.className = "option";
+      btn.innerText = option;
+      btn.onclick = () => next(option);
+      optionsEl.appendChild(btn);
+    });
+  }
+
+  function next(answer) {
+    answers.push(answer);
+    index++;
+
+    if (index < quiz.length) {
+      loadQuestion();
+    } else {
+      questionEl.innerText = "Perfect choice 😍\nI can't wait for our date ❤️";
+      optionsEl.innerHTML = "";
+      progressEl.innerText = "Quiz completed 💖";
+    }
+  }
+</script>
+
+</body>
+</html>

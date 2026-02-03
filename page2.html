@@ -2,25 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will You Be My Valentine? 💘</title>
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    }
+
+    .container {
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 30px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    img {
+      width: 180px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #d63384;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 18px;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: #4caf50;
+      color: white;
+    }
+
+    #noBtn {
+      background: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    /* QUIZ CARD */
+    .quiz-card {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 22px;
+      background: #ffe4ec;
+      display: none;
+    }
+
+    .quiz-card img {
+      width: 120px;
+    }
+
+    .quiz-btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .quiz-yes {
+      background: #ff4d6d;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .quiz-no {
+      background: #bbb;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body id="mainBody" class="sad-bg">
 
-  <audio id="bgMusic" src="music.mp3" loop></audio>
+<body>
 
-  <div class="container">
-    <h2 id="greet"></h2>
-    <h1 id="question">Will you be my Valentine? 💖</h1>
+<audio id="bgMusic" src="music.mp3" loop></audio>
 
-    <img id="panda" src="https://media.tenor.com/v82ifjvW8XIAAAAM/aham-sithi-peace-goma-sithi.gif" />
+<div class="container">
 
-    <div class="buttons">
-      <button id="yesBtn" onclick="sayYes()">YES 💚</button>
-      <button id="noBtn" onclick="sayNo()">NO 💔</button>
+  <!-- PANDA -->
+  <img id="pandaImg"
+       src="https://i.pinimg.com/originals/05/0c/5a/050c5a03f7415fb92f082371d3e8cb2a.gif"
+       alt="Panda">
+
+  <h1 id="text">Will you be my Valentine? 💖</h1>
+
+  <!-- YES NO BUTTONS -->
+  <div class="buttons">
+    <button id="yesBtn" onclick="yesClicked()">Yes</button>
+    <button id="noBtn" onclick="noClicked()">No</button>
+  </div>
+
+  <!-- QUIZ CARD -->
+  <div class="quiz-card" id="quizCard">
+    <img src="https://i.pinimg.com/originals/c9/90/78/c990783caafed97b2edd60eaed7c244e.gif" alt="Smiling Panda">
+    <p style="font-size: 16px; color:#d63384;">
+      Do you want to participate in a small fun quiz with me? 😊
+    </p>
+
+    <div class="quiz-btns">
+      <button class="quiz-yes" onclick="goToQuiz()">Yes 💕</button>
+      <button class="quiz-no" onclick="stayHere()">No 😊</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+<script>
+  let noCount = 0;
+  const panda = document.getElementById("pandaImg");
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const text = document.getElementById("text");
+  const quizCard = document.getElementById("quizCard");
+  const music = document.getElementById("bgMusic");
+
+  function yesClicked() {
+    music.play();
+    panda.src = "https://media.tenor.com/0JWcKoeZ3kkAAAAj/bubu-bubu-dudu.gif";
+    text.innerText = "Yay! You said YES ❤️";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    quizCard.style.display = "block";
+  }
+
+  function noClicked() {
+    noCount++;
+
+    panda.src = "https://i.pinimg.com/originals/ba/05/84/ba05848aa94062e65b730304a4c20cfb.gif";
+
+    noBtn.style.left = Math.random() * 70 + "%";
+    noBtn.style.top = Math.random() * 70 + "%";
+
+    let size = parseInt(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = (size + 4) + "px";
+  }
+
+  function goToQuiz() {
+    window.location.href = "quiz.html";
+  }
+
+  function stayHere() {
+    quizCard.innerHTML = "<p style='color:#d63384;font-size:16px;'>No worries 😊 I'm happy you're here ❤️</p>";
+  }
+</script>
+
 </body>
 </html>
